@@ -1,0 +1,83 @@
+@font-face {
+  font-family: Beau Sans;
+  src: url(./fonts/BT-Beau-Sans/BT-BeauSans-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Beau Sans;
+  src: url(./fonts/BT-Beau-Sans/BT-BeauSans-Light.ttf);
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Beau Sans;
+  src: url(./fonts/BT-Beau-Sans/BT-BeauSans-Medium.ttf);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Beau Sans;
+  src: url(./fonts/BT-Beau-Sans/BT-BeauSans-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Beau Sans;
+  src: url(./fonts/BT-Beau-Sans/BT-BeauSans-Italic.ttf);
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Beau Sans;
+  src: url(./fonts/BT-Beau-Sans/BT-BeauSans-LightItalic.ttf);
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Beau Sans;
+  src: url(./fonts/BT-Beau-Sans/BT-BeauSans-MediumItalic.ttf);
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Beau Sans;
+  src: url(./fonts/BT-Beau-Sans/BT-BeauSans-BoldItalic.ttf);
+  font-weight: 700;
+  font-style: italic;
+}
+
+:root {
+  --dark-color: #700000;
+  --light-color: #f3f3f3;
+  --disabled-color: rgb(255, 146, 146);
+  --background-color: rgb(255, 255, 255);
+
+  --white-color: #ffffff;
+  --black-color: #000;
+  --text-color: #333;
+  --border-color: #dbdbdb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Beau Sans;
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  width: 100%;
+  background-color: var(--background-color);
+  align-items: center;
+  text-align: center;
+}
