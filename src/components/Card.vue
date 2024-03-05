@@ -6,8 +6,8 @@
       width: `${(1200 - 16 * (width - 1)) / width}px`,
     }"
   >
-    <p>isFlipped: {{ isFlipped }}</p>
-    <p>fliping: {{ fliping }}</p>
+    <!-- <p>isFlipped: {{ isFlipped }}</p>
+    <p>fliping: {{ fliping }}</p> -->
 
     <div
       class="card__inner"
