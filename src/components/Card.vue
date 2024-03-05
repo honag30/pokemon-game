@@ -1,17 +1,17 @@
 <template>
   <div
     class="card"
-    :class="{ disabled: state.isDisabled }"
+    :class="{ disabled: isDisabled }"
     :style="{
       width: `${(1200 - 16 * (width - 1)) / width}px`,
     }"
   >
-    <p>isFlipped: {{ state.isFlipped }}</p>
-    <p>fliping: {{ fliping }}</p>
+    <!-- <p>isFlipped: {{ isFlipped }}</p>
+    <p>fliping: {{ fliping }}</p> -->
 
     <div
       class="card__inner"
-      :class="{ 'is-flipped': state.isFlipped }"
+      :class="{ 'is-flipped': isFlipped }"
       @click="onToggleFlipCard"
     >
       <div class="card__face card__face--front">
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-import { reactive, watch } from "vue";
+import { reactive } from "vue";
 export default {
   props: {
     imgBackFaceUrl: {
@@ -51,56 +51,53 @@ export default {
     },
   },
 
-  // data() {
-  //   return {
-  //     isFlipped: false,
-  //     isDisabled: false,
-  //   };
-  // }
-
-  setup(props, { emit }) {
-    let state = reactive({
+  data() {
+    return {
       isFlipped: false,
       isDisabled: false,
-    });
-
-    watch(props.fliping, (newValue, oldValue) => {
-      if (newValue == true) {
-        state.isFlipped = true;
-      } else if (oldValue == true) {
-        state.isFlipped == false;
-      }
-    });
-
-    // const changeFlipped = () => {
-    //   console.log(props.fliping);
-    //   if (props.fliping == true) {
-    //     state.isFlipped = true;
-    //   }
-    // };
-    // changeFlipped();
-
-    return {
-      state,
     };
   },
 
+  watch: {
+    fliping(mewValue, oldValue) {
+      if (this.isDisabled == false) {
+        if (mewValue == true) {
+          this.isFlipped = true;
+        }
+        if (oldValue == true) {
+          this.isFlipped = false;
+        }
+      }
+    },
+  },
+
+  // setup() {
+  //   let state = reactive({
+  //     isFlipped: false,
+  //     isDisabled: false,
+  //   });
+
+  //   return {
+  //     state,
+  //   };
+  // },
+
   methods: {
     onToggleFlipCard() {
-      if (this.state.isDisabled) {
+      if (this.isDisabled) {
         return false;
       } else {
-        this.state.isFlipped = !this.state.isFlipped;
-        if (this.state.isFlipped) {
+        this.isFlipped = !this.isFlipped;
+        if (this.isFlipped) {
           this.$emit("onFlip", this.card);
         }
       }
     },
     onFlipBackCard() {
-      this.state.isFlipped = false;
+      this.isFlipped = false;
     },
     onDisable() {
-      this.state.isDisabled = true;
+      this.isDisabled = true;
     },
   },
 };

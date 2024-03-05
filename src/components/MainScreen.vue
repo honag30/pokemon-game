@@ -6,20 +6,20 @@
 
     <div class="action">
       <button @click="onStart(4, 3)">
-        <span>4x3</span><br />
-        <span>Easy</span>
+        <p>4x3</p>
+        <p>Easy</p>
       </button>
       <button @click="onStart(6, 4)">
-        <span>6x4</span><br />
-        <span>Medium</span>
+        <p>6x4</p>
+        <p>Medium</p>
       </button>
       <button @click="onStart(8, 6)">
-        <span>8x6</span><br />
-        <span>Hard</span>
+        <p>8x6</p>
+        <p>Hard</p>
       </button>
       <button @click="onStart(10, 8)">
-        <span>10x8</span><br />
-        <span>Master</span>
+        <p>10x8</p>
+        <p>Master</p>
       </button>
     </div>
   </div>
@@ -55,5 +55,8 @@ button {
 button:hover {
   background-color: rgb(0, 60, 175);
   box-shadow: 0 2px 20px 2px rgba(0, 0, 0, 0.3);
+}
+p {
+  margin: 6px;
 }
 </style>

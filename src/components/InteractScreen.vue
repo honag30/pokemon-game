@@ -145,7 +145,11 @@ export default {
     },
 
     onFlipAll() {
-      this.fliping = true;
+      if (this.fliping) {
+        this.fliping = !this.fliping;
+      } else {
+        this.fliping = true;
+      }
     },
   },
 };
