@@ -2,17 +2,25 @@
   <div class="screen">
     <h1 class="comp">Congratulation!</h1>
     <h2 class="comp">You finish the game in:</h2>
-    <p class="comp score">{{ Math.round(timer / 1000) }}</p>
-    <h2 class="comp">second</h2>
+    <p class="comp score">{{ time }}</p>
+    <!-- <h2 class="comp">second</h2> -->
     <button class="comp btn" @click="onStarAgain()">Start again!</button>
   </div>
 </template>
 <script>
+import { toTimeString } from "../utils/array";
+
 export default {
   props: {
     timer: {
       type: Number,
       required: true,
+    },
+  },
+
+  computed: {
+    time() {
+      return toTimeString(Math.round(this.timer / 1000));
     },
   },
 

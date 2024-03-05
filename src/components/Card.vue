@@ -6,8 +6,8 @@
       width: `${(1200 - 16 * (width - 1)) / width}px`,
     }"
   >
-    <!-- <p>isFlipped: {{ isFlipped }}</p>
-    <p>fliping: {{ fliping }}</p> -->
+    <p>isFlipped: {{ isFlipped }}</p>
+    <p>fliping: {{ fliping }}</p>
 
     <div
       class="card__inner"
@@ -59,14 +59,19 @@ export default {
   },
 
   watch: {
-    fliping(mewValue, oldValue) {
+    fliping(newValue, oldValue) {
       if (this.isDisabled == false) {
-        if (mewValue == true) {
+        if (newValue == true) {
           this.isFlipped = true;
         }
         if (oldValue == true) {
           this.isFlipped = false;
         }
+      }
+    },
+    isFlipped(newFlip, oldFlip) {
+      if (newFlip == oldFlip) {
+        this.isFlipped = true;
       }
     },
   },

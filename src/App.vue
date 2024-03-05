@@ -77,7 +77,7 @@ export default {
     onGetResult() {
       let finishTime = new Date().getTime();
       this.timer = finishTime - this.settings.startedAt;
-
+      
       this.statusMatch = "result";
     },
   },

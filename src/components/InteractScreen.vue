@@ -54,89 +54,91 @@ export default {
   },
   methods: {
     checkRule(card) {
-      this.rules.push(card);
+      if (this.fliping == false) {
+        this.rules.push(card);
 
-      // Test push card
-      console.log(this.rules);
+        // Test push card
+        console.log(this.rules);
 
-      // Reset rule [Done]
-      if (this.rules.length > 2) {
-        this.rules = [];
-      }
+        // Reset rule [Done]
+        if (this.rules.length > 2) {
+          this.rules = [];
+        }
 
-      // handler flip one card twice err [Done]
-      if (
-        this.rules.length === 2 &&
-        this.rules[0].index == this.rules[1].index
-      ) {
-        // console.log("dk err 1", this.rules);
-        let clone = this.rules[1];
-        this.rules = [];
-        this.rules.push(clone);
-      }
-      // if (
-      //   this.rules.length === 2 &&
-      //   this.rules[0].index == this.rules[1].index
-      // ) {
-      //   // console.log("dk err 1", this.rules);
-      //   let cardFliped = this.$refs[`card-${this.rules[1].index}`][0];
-      //   this.rules = [];
-
-      //   setTimeout(() => {
-      //     cardFliped.onFlipBackCard();
-      //   }, 500);
-      // }
-
-      //
-      if (
-        this.rules.length === 2 &&
-        this.rules[0].value == this.rules[1].value &&
-        this.rules[0].index !== this.rules[1].index
-      ) {
-        console.log("dk true", this.rules);
-        console.log(">>> True");
-
-        this.$refs[`card-${this.rules[0].index}`][0].onDisable();
-        this.$refs[`card-${this.rules[1].index}`][0].onDisable();
-
-        this.rules = [];
-
-        const disabledElements = document.querySelectorAll(
-          ".screen .card.disabled",
-        );
-
-        // console.log(disabledElements.length)
-        // console.log(this.cardsContext.length)
-
-        // Game set [Done]
+        // handler flip one card twice err [Done]
         if (
-          disabledElements &&
-          disabledElements.length === this.cardsContext.length - 2
+          this.rules.length === 2 &&
+          this.rules[0].index == this.rules[1].index
         ) {
-          console.log(">>> Finish");
+          // console.log("dk err 1", this.rules);
+          let clone = this.rules[1];
+          this.rules = [];
+          this.rules.push(clone);
+        }
+        // if (
+        //   this.rules.length === 2 &&
+        //   this.rules[0].index == this.rules[1].index
+        // ) {
+        //   // console.log("dk err 1", this.rules);
+        //   let cardFliped = this.$refs[`card-${this.rules[1].index}`][0];
+        //   this.rules = [];
+
+        //   setTimeout(() => {
+        //     cardFliped.onFlipBackCard();
+        //   }, 500);
+        // }
+
+        //
+        if (
+          this.rules.length === 2 &&
+          this.rules[0].value == this.rules[1].value &&
+          this.rules[0].index !== this.rules[1].index
+        ) {
+          console.log("dk true", this.rules);
+          console.log(">>> True");
+
+          this.$refs[`card-${this.rules[0].index}`][0].onDisable();
+          this.$refs[`card-${this.rules[1].index}`][0].onDisable();
+
+          this.rules = [];
+
+          const disabledElements = document.querySelectorAll(
+            ".screen .card.disabled",
+          );
+
+          // console.log(disabledElements.length)
+          // console.log(this.cardsContext.length)
+
+          // Game set [Done]
+          if (
+            disabledElements &&
+            disabledElements.length === this.cardsContext.length - 2
+          ) {
+            console.log(">>> Finish");
+
+            setTimeout(() => {
+              this.$emit("onFinish");
+            }, 3000);
+          }
+        } else if (
+          this.rules.length === 2 &&
+          this.rules[0].value !== this.rules[1].value
+        ) {
+          console.log(">>> False");
+          console.log("dk false", this.rules);
+
+          let a = this.$refs[`card-${this.rules[0].index}`][0];
+          let b = this.$refs[`card-${this.rules[1].index}`][0];
+          this.rules = [];
 
           setTimeout(() => {
-            this.$emit("onFinish");
-          }, 3000);
+            a.onFlipBackCard();
+            b.onFlipBackCard();
+          }, 500);
+        } else {
+          // this.rules = []
+          return false;
         }
-      } else if (
-        this.rules.length === 2 &&
-        this.rules[0].value !== this.rules[1].value
-      ) {
-        console.log(">>> False");
-        console.log("dk false", this.rules);
-
-        let a = this.$refs[`card-${this.rules[0].index}`][0];
-        let b = this.$refs[`card-${this.rules[1].index}`][0];
-        this.rules = [];
-
-        setTimeout(() => {
-          a.onFlipBackCard();
-          b.onFlipBackCard();
-        }, 500);
-      } else {
-        // this.rules = []
-        return false;
       }
     },
 
