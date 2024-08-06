@@ -58,10 +58,23 @@ export default {
       let total = this.width * this.height;
       this.settings.totalBlocks = total;
 
-      const firstCards = Array.from(
-        { length: this.settings.totalBlocks / 2 },
-        (_, i) => i + 1,
-      );
+      // New
+      function createRandomArray(length, min, max) {
+        return Array.from(
+          { length },
+          () => Math.floor(Math.random() * (max - min + 1)) + min,
+        );
+      }
+      const arrayLength = this.settings.totalBlocks / 2; // The length of the array
+      const minValue = 1; // Minimum value for random numbers
+      const maxValue = 64; // Maximum value for random numbers
+
+      const firstCards = createRandomArray(arrayLength, minValue, maxValue);
+
+      // const firstCards = Array.from(
+      //   { length: this.settings.totalBlocks / 2 },
+      //   (_, i) => i + 1,
+      // );
 
       const secondCards = [...firstCards];
 
@@ -77,7 +90,7 @@ export default {
     onGetResult() {
       let finishTime = new Date().getTime();
       this.timer = finishTime - this.settings.startedAt;
-      
+
       this.statusMatch = "result";
     },
   },
