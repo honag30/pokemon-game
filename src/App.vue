@@ -59,17 +59,24 @@ export default {
       this.settings.totalBlocks = total;
 
       // New
-      function createRandomArray(length, min, max) {
-        return Array.from(
-          { length },
-          () => Math.floor(Math.random() * (max - min + 1)) + min,
+      function getRandomArray(start, end, length) {
+        let array = Array.from(
+          { length: end - start + 1 },
+          (_, index) => start + index,
         );
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array.slice(0, length);
       }
-      const arrayLength = this.settings.totalBlocks / 2; // The length of the array
-      const minValue = 1; // Minimum value for random numbers
-      const maxValue = 64; // Maximum value for random numbers
 
-      const firstCards = createRandomArray(arrayLength, minValue, maxValue);
+      const arrayLength = this.settings.totalBlocks / 2;
+      const minValue = 1;
+      const maxValue = 64;
+
+      const firstCards = getRandomArray(minValue, maxValue, arrayLength);
+      console.log(firstCards);
 
       // const firstCards = Array.from(
       //   { length: this.settings.totalBlocks / 2 },
